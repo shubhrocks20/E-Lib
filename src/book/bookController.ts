@@ -40,7 +40,8 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
         format: "pdf",
       }
     );
-
+    // @ts-ignore
+    console.log("userId", req.userId);
     const newBook = await bookModel.create({
       title,
       genre,
@@ -56,8 +57,6 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
   } catch (err) {
     return next(createHttpError(500, "Error while uploading files"));
   }
-
-  res.json({ msg: "ok" });
 };
 
 export { createBook };
