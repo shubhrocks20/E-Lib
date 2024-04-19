@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createBook, updateBook } from "./bookController";
+import { createBook, listBooks, updateBook } from "./bookController";
 import multer from "multer";
 import path from "node:path";
 import authenticate from "../middlewares/authenticate";
@@ -11,6 +11,8 @@ const upload = multer({
   limits: { fileSize: 9 * 1024 * 1024 }, // 30mb
 });
 // routes
+bookRouter.get("/", listBooks);
+
 bookRouter.post(
   "/",
   authenticate,
